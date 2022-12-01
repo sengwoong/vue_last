@@ -1,30 +1,38 @@
 <template>
-    <h1 id="hello1">
-      Hellow world!
-    </h1>
-    
-    <h1 ref="hello">
-      Hellow world!
-    </h1>
-    <Hello ref="hi"/>
+ <h1 @click="increase">
+{{counr}}/{{doubleCount}}
+
+ </h1>
+ <h1>
+{{message}}/{{reversedMessage}}
+
+ </h1>
     </template>
     
     <script>
-    import Hello from './components/Hello.vue'
+import { computed } from 'vue';
+
     export default{
-    components:{
-      Hello
-    },
-    mounted(){
-    
-      const h1El = document.querySelector('#hello1')
-      console.log(h1El.textContent)
-    
-      console.log(this.$refs.hello.textContent)
-    
-      console.log(this.$refs.hi.$refs.good)
+        data(){
+            return{
+                message: 'Hello world',
+                count:0
+
+            },
+            computed:{
+                doubleCount(){
+                    return this.count *2
+                },
+                reversedMessage(){
+
+                    return this.message.split('').reverse().join('')
+                }
+
+            }
+
+        }
      
-    }
+    
     
     }
     </script>
