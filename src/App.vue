@@ -1,44 +1,30 @@
 <template>
-  <!-- <Parent :msg="msg"/>  -->
-  <Parent/>
+<h1 id="hello1">
+  Hellow world!
+</h1>
 
-  </template>
-  <script>
-import Parent from './components/Parent.vue'
-import {computed} from 'vue'
+<h1 ref="hello">
+  Hellow world!
+</h1>
+<Hello ref="hi"/>
+</template>
+
+<script>
+import Hello from './components/Hello.vue'
 export default{
 components:{
-  Parent
+  Hello
 },
-data(){
-  return{
-   
-    msg: 'asdasd'
-  }
-},
-// 계산된데이터
-computed:{
-   
-  msg: 'asdasd'
-}
-,
-// provide 는 일반이게반응성이없음 컴퓨티드랑 같이 만들어야 반응성이있음 
-provide(){
-  return{
+mounted(){
 
-    // promsg: this.msg 이렇게 만들면 반응성이없음
+  const h1El = document.querySelector('#hello1')
+  console.log(h1El.textContent)
 
-    promsg: computed(()=>{
-      return this.msg
-    })
+  console.log(this.$refs.hello.textContent)
 
-    // promsg: computed(()=>this.msg)
-
-  }
-  
-
+  console.log(this.$refs.hi.$refs.good)
+ 
 }
 
-
 }
-  </script>
+</script>
